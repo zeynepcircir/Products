@@ -1,0 +1,80 @@
+<div *ngIf="!isTableSelected">
+    <app-categories [categoryList]="categoryList"
+        (productsBySelectedCategory)="getProductsBySelectedCategory($event)"></app-categories>
+</div>
+<div>{{ 'Today --> '+( today | date : 'M/d/yy')}}</div>
+<div>{{ 'Today --> '+ today }}</div>
+
+
+<div>
+    Table/Card:
+    <p-checkbox [(ngModel)]="isTableSelected" [binary]="true"></p-checkbox>
+</div>
+
+<div class="card " *ngIf="!isTableSelected">
+
+    <p-card appHighlight header="{{ product.title }}" [subheader]="product!.category!" styleClass="p-card-shadow"
+        *ngFor="let product of productList" class="cards">
+
+        <ng-template pTemplate="header">
+            <img alt="Card" [src]="product?.image" height="350px"
+                style="object-fit: fill; padding: 0.8rem; border-bottom: 2px solid rgba(165, 165, 165, 0.809);">
+        </ng-template>
+        <p class="description">{{ product?.description }}
+        </p>
+        <ng-template pTemplate="footer" class="button">
+            <p-button (click)="show(product)" label="Edit" styleClass="p-button-secondary"
+                icon="pi pi-check"></p-button>
+            <p-button label="delete" styleClass="p-button-secondary" [style]="{'margin-left':'.5em'}" icon="pi pi-times"
+                (click)="deleteProduct(product)"></p-button>
+        </ng-template>
+    </p-card>
+</div>
+
+<div *ngIf="isTableSelected">
+    <p-table appHighlight *ngIf="productList.length else emptyData" [value]="productList" [paginator]="true" [rows]="5"
+        [rowsPerPageOptions]="[5,10,25,50]" [scrollable]="true" styleClass="p-datatable-gridlines"
+        responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pResizableColumn pSortableColumn="id">{{ 'Id' | header }}<p-sortIcon field="id"></p-sortIcon>
+                </th>
+                <th pResizableColumn pSortableColumn="title">{{ 'Title' | header }} <p-columnFilter type="text" field="title"
+                        display="title"></p-columnFilter> <p-sortIcon field="title"></p-sortIcon></th>
+                <th pResizableColumn pSortableColumn="category">{{ 'Category'| header }} <p-columnFilter type="text"
+                        field="category" display="category"></p-columnFilter> <p-sortIcon field="category"></p-sortIcon>
+                </th>
+                <th pResizableColumn pSortableColumn="price">{{ 'Price'| header }} <p-columnFilter type="boolean" field="id"
+                        display="id"></p-columnFilter> <p-sortIcon field="price"></p-sortIcon></th>
+                <th pResizableColumn pSortableColumn="description">{{ 'Description'| header }} <p-columnFilter type="text"
+                        field="description" display="description"></p-columnFilter> <p-sortIcon
+                        field="description"></p-sortIcon></th>
+                <th pResizableColumn pSortableColumn="image">{{ 'Image'| header }} <p-sortIcon field="image"></p-sortIcon> </th>
+                <th pResizableColumn pSortableColumn="actions">{{ 'Actions'| header }} <p-sortIcon field="actions"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product?.id}}</td>
+                <td>{{product?.title}}</td>
+                <td>{{product?.category | uppercase}}</td>
+                <td>{{product?.price | currency}}</td>
+                <td>{{product?.description}}</td>
+                <td class="img"><img [alt]="product?.image" [src]="product?.image" width="80px"
+                        style="vertical-align: middle" />
+                </td>
+                <td>{{ product?.actions }}
+                    <button (click)="show(product)" pButton pRipple type="button" label="Edit"
+                        class="p-button-outlined"></button> &nbsp;
+                    <button (click)="deleteProduct(product) " pButton pRipple type="button" label="Delete"
+                        class="p-button-outlined p-button-secondary"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<ng-template #emptyData>
+    <h5>There is no datat in the table!</h5>
+</ng-template>

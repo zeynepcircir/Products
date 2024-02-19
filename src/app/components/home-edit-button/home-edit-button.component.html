@@ -1,0 +1,28 @@
+<div>
+  <form [formGroup]="profileForm" style="display: flex; flex-direction: column;">
+
+    <label for="category">Category: </label>
+    <input id="category" type="text" formControlName="category">
+
+    <label for="description">Description: </label>
+    <input id="description" type="text" formControlName="description">
+
+    <label for="image">Image: </label>
+    <input id="image" type="text" formControlName="image">
+
+    <label for="price">Price: </label>
+    <input id="price" type="text" formControlName="price">
+
+    <label for="title">Title: </label>
+    <input id="title" type="text" formControlName="title">
+
+
+
+
+  </form>
+
+  <button pButton pRipple type="button" label="Save" class="p-button-outlined" (click)="save()"></button> &nbsp;
+  <button pButton pRipple type="button" label="Cancel" class="p-button-outlined p-button-secondary"
+    (click)="cancel()"></button>
+
+</div>

@@ -1,0 +1,37 @@
+.button{
+  padding-top: 50px;
+  border: none;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 40px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: rgb(238, 238, 179); 
+  border-radius: 15%;
+  border: 3px solid #585c5b;
+  margin-left:12% ;
+  display:inline;
+  justify-content: space-between;
+  
+
+}
+
+.button:hover{
+    background-color: rgb(200, 235, 161); 
+    color: black; 
+    border: 2px solid #070707;
+}
+
+@media screen and (max-width: 768px){
+  
+    .btn-div{
+      
+      display: flex;
+      overflow-x: scroll;
+      
+    }
+  
+}
