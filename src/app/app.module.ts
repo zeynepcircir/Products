@@ -16,6 +16,7 @@ import { TableModule } from 'primeng/table';
 import { HighlightDirective } from './directives/highlight.directive';
 import { CategoryPipe } from './pipes/category.pipe';
 import { HeaderPipe } from './pipes/header.pipe';
+import {MenubarModule} from 'primeng/menubar';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { HeaderPipe } from './pipes/header.pipe';
     ReactiveFormsModule,
     CheckboxModule,
     TableModule,
+    MenubarModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

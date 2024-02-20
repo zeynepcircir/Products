@@ -7,13 +7,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CategoryPipe implements PipeTransform {
   transform(value: string): string {
     if (value === "men's clothing") {
-      return 'Erkek Kıyafet';
+      return 'ERKEK KIYAFET';
     } else if (value === 'jewelery') {
-      return 'Mücevher';
+      return 'MÜCEVHER';
     } else if (value === 'electronics') {
-      return 'Elektronik';
+      return 'ELEKTRONİK';
     } else if (value === "women's clothing") {
-      return 'Kadın Kıyafet';
+      return 'KADIN KIYAFET';
     }
     return '';
   }

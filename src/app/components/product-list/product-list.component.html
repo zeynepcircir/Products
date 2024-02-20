@@ -1,15 +1,14 @@
-<div *ngIf="!isTableSelected">
+<div>
     <app-categories [categoryList]="categoryList"
         (productsBySelectedCategory)="getProductsBySelectedCategory($event)"></app-categories>
 </div>
-<div>{{ 'Today --> '+( today | date : 'M/d/yy')}}</div>
-<div>{{ 'Today --> '+ today }}</div>
+
 
 
 <div>
-    Table/Card:
     <p-checkbox [(ngModel)]="isTableSelected" [binary]="true"></p-checkbox>
 </div>
+
 
 <div class="card " *ngIf="!isTableSelected">
 
@@ -25,11 +24,12 @@
         <ng-template pTemplate="footer" class="button">
             <p-button (click)="show(product)" label="Edit" styleClass="p-button-secondary"
                 icon="pi pi-check"></p-button>
-            <p-button label="delete" styleClass="p-button-secondary" [style]="{'margin-left':'.5em'}" icon="pi pi-times"
+            <p-button label="Delete" styleClass="p-button-secondary" [style]="{'margin-left':'.5em'}" icon="pi pi-times"
                 (click)="deleteProduct(product)"></p-button>
         </ng-template>
     </p-card>
 </div>
+
 
 <div *ngIf="isTableSelected">
     <p-table appHighlight *ngIf="productList.length else emptyData" [value]="productList" [paginator]="true" [rows]="5"
@@ -39,18 +39,20 @@
             <tr>
                 <th pResizableColumn pSortableColumn="id">{{ 'Id' | header }}<p-sortIcon field="id"></p-sortIcon>
                 </th>
-                <th pResizableColumn pSortableColumn="title">{{ 'Title' | header }} <p-columnFilter type="text" field="title"
-                        display="title"></p-columnFilter> <p-sortIcon field="title"></p-sortIcon></th>
+                <th pResizableColumn pSortableColumn="title">{{ 'Title' | header }} <p-columnFilter type="text"
+                        field="title" display="title"></p-columnFilter> <p-sortIcon field="title"></p-sortIcon></th>
                 <th pResizableColumn pSortableColumn="category">{{ 'Category'| header }} <p-columnFilter type="text"
                         field="category" display="category"></p-columnFilter> <p-sortIcon field="category"></p-sortIcon>
                 </th>
-                <th pResizableColumn pSortableColumn="price">{{ 'Price'| header }} <p-columnFilter type="boolean" field="id"
-                        display="id"></p-columnFilter> <p-sortIcon field="price"></p-sortIcon></th>
-                <th pResizableColumn pSortableColumn="description">{{ 'Description'| header }} <p-columnFilter type="text"
-                        field="description" display="description"></p-columnFilter> <p-sortIcon
+                <th pResizableColumn pSortableColumn="price">{{ 'Price'| header }} <p-columnFilter type="boolean"
+                        field="id" display="id"></p-columnFilter> <p-sortIcon field="price"></p-sortIcon></th>
+                <th pResizableColumn pSortableColumn="description">{{ 'Description'| header }} <p-columnFilter
+                        type="text" field="description" display="description"></p-columnFilter> <p-sortIcon
                         field="description"></p-sortIcon></th>
-                <th pResizableColumn pSortableColumn="image">{{ 'Image'| header }} <p-sortIcon field="image"></p-sortIcon> </th>
-                <th pResizableColumn pSortableColumn="actions">{{ 'Actions'| header }} <p-sortIcon field="actions"></p-sortIcon>
+                <th pResizableColumn pSortableColumn="image">{{ 'Image'| header }} <p-sortIcon
+                        field="image"></p-sortIcon> </th>
+                <th pResizableColumn pSortableColumn="actions">{{ 'Actions'| header }} <p-sortIcon
+                        field="actions"></p-sortIcon>
                 </th>
             </tr>
         </ng-template>
@@ -66,7 +68,7 @@
                 </td>
                 <td>{{ product?.actions }}
                     <button (click)="show(product)" pButton pRipple type="button" label="Edit"
-                        class="p-button-outlined"></button> &nbsp;
+                        class="p-button-outlined p-button-secondary"></button> &nbsp;
                     <button (click)="deleteProduct(product) " pButton pRipple type="button" label="Delete"
                         class="p-button-outlined p-button-secondary"></button>
                 </td>

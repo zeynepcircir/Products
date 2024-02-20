@@ -1,4 +1,8 @@
-<div class="btn-div">
-    <button *ngFor="let category of categoryList" (click)="handleClick(category)" class="button">
-        {{ (category | category) }}
-    </button></div>
+<p-menubar>
+    <ng-template pTemplate="start">
+        <button style="color: rgb(87, 87, 87);" *ngFor="let category of categoryList" (click)="handleClick(category)" pButton pRipple type="button"
+            class="p-button-outlined p-button-secondary">
+            {{ (category | category) }}
+        </button> </ng-template>
+
+</p-menubar>

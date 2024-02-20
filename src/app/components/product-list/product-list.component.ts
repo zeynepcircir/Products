@@ -7,6 +7,7 @@ import { PrimeNGConfig } from 'primeng/api';
 import { HomeEditButtonComponent } from '../home-edit-button/home-edit-button.component';
 import { Observable } from 'rxjs';
 import { log } from 'console';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -27,8 +28,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private dialogService: DialogService,
-    private _http: HttpClient,
-    private primengConfig: PrimeNGConfig
+    private primengConfig: PrimeNGConfig,
+    private _productService: ProductService
   ) {}
 
   show(product: ProductModel) {
@@ -52,9 +53,19 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
-    this.loadProducts();
 
-    const observable = new Observable((subscriber) => { //rxjs'te kullanılıyor
+    this._productService.getProducts().subscribe((response) => {
+      this.productList = response;
+
+      this.productList?.forEach((pr) => {
+        if (!this.categoryList.includes(pr?.category + '')) {
+          this.categoryList.push(pr?.category + '');
+        }
+      });
+    });
+
+    const observable = new Observable((subscriber) => {
+      //rxjs'te kullanılıyor
       subscriber.next(1);
       console.log('subscriber1', subscriber);
 
@@ -74,20 +85,6 @@ export class ProductListComponent implements OnInit {
     console.log(observable);
   }
 
-  loadProducts() {
-    this._http
-      .get('https://fakestoreapi.com/products')
-      .subscribe((response) => {
-        //@ts-ignore
-        this.productList = response;
-        this.productList.forEach((product) => {
-          if (!this.categoryList.includes(product.category + '')) {
-            this.categoryList.push(product.category + '');
-          }
-        });
-      });
-  }
-
   getProductsBySelectedCategory(event: ProductModel[]) {
     this.productList = event;
   }
@@ -98,3 +95,5 @@ export class ProductListComponent implements OnInit {
     });
   }
 }
+
+// stil ,layout ,json-server ,lazy loading, dialog yerine router

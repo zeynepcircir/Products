@@ -17,13 +17,10 @@
 }
 
 .cards {
-    width: 360px;
-    border: 5px solid rgb(19, 17, 17);
-    border-radius: 0.5rem;
     margin: 1rem;
     min-width: 360px;
     max-width: 360px !important;
-
+    border: 1px solid lightgray;
     @media screen and (max-width:768px){
         margin: 0.4rem;
     }
@@ -33,9 +30,9 @@
 
 ::ng-deep {
     .p-card .p-card-title {
-    color: rgb(117, 177, 38);
+    color: rgb(66, 66, 66);
     font-size: 23.4px;
-    font-weight: 900;
+    font-weight: 600;
     display: -webkit-box;
     -webkit-line-clamp:3;
     -webkit-box-orient: vertical;
