@@ -1,6 +1,4 @@
-![image](https://github.com/zeynepcircir/Products/assets/81877446/a15e05f5-5e0d-4a77-a0fa-43131ff7e493) <br>
-![image](https://github.com/zeynepcircir/Products/assets/81877446/633702b2-bfc7-4475-98d6-c4bdae5753a4) <br>
-![image](https://github.com/zeynepcircir/Products/assets/81877446/18fc0d74-9d92-4dc9-bfa6-0112f5d6b3d8)
+
 # Product
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.11.
