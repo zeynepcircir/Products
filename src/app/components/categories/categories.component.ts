@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProductModel } from 'src/app/models/ProductModel';
+import { ProductService } from 'src/app/services/product.service'; // ProductService'yi içeri aktarıyoruz.
+
 
 @Component({
   selector: 'app-categories',
@@ -9,12 +11,14 @@ import { ProductModel } from 'src/app/models/ProductModel';
 })
 export class CategoriesComponent implements OnInit {
 
+
   @Input() categoryList!: string[]
   @Output() productsBySelectedCategory: EventEmitter<ProductModel[]>= new EventEmitter<ProductModel[]>();
 
+
   
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private productService: ProductService) { }
 
  
 
@@ -26,16 +30,12 @@ export class CategoriesComponent implements OnInit {
 
   public handleClick(event: string) {
     console.log(event);
-    this._http.get('https://fakestoreapi.com/products/category/'+ event).subscribe(response =>{
-   
-      //@ts-ignore
-      this.productsBySelectedCategory.emit(response)
-        
+ //@ts-ignore
+    this.productService.getCategoryProducts(event).subscribe(response => {
+      this.productsBySelectedCategory.emit(response);
       })
-}
+  }
 
 
 
-
-
-}
+}  

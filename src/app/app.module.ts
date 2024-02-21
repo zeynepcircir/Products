@@ -18,6 +18,7 @@ import { CategoryPipe } from './pipes/category.pipe';
 import { HeaderPipe } from './pipes/header.pipe';
 import {MenubarModule} from 'primeng/menubar';
 
+
 @NgModule({
   declarations: [
     AppComponent,
