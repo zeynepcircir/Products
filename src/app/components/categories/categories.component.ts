@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProductModel } from 'src/app/models/ProductModel';
 import { ProductService } from 'src/app/components/services/product.service'; // ProductService'yi içeri aktarıyoruz.
+import { log } from 'console';
 
 @Component({
   selector: 'app-categories',
@@ -9,7 +10,7 @@ import { ProductService } from 'src/app/components/services/product.service'; //
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent implements OnInit {
-  @Input() categoryList!: string[];
+  categoryList: string[] = [];
   @Output() productsBySelectedCategory: EventEmitter<ProductModel[]> =
     new EventEmitter<ProductModel[]>();
 
@@ -20,13 +21,26 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.categoryList);
+    this.getCategories();
   }
 
-  public handleClick(event: string) {
+  handleClick(event: string | null) {
     console.log(event);
-    //@ts-ignore
-    this.productService.getCategoryProducts(event).subscribe((response) => {
-      this.productsBySelectedCategory.emit(response);
+    if (event) {
+      //@ts-ignore
+      this.productService.getCategoryProducts(event).subscribe((response) => {
+        this.productsBySelectedCategory.emit(response);
+      });
+    } else {
+      this.productService.getProducts().subscribe((response) => {
+        this.productsBySelectedCategory.emit(response);
+      });
+    }
+  }
+
+  getCategories() {
+    this.productService.getCategories().subscribe((response) => {
+      this.categoryList = response;
     });
   }
 }

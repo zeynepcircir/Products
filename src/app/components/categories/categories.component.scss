@@ -1,3 +1,6 @@
+
+
+
 @media screen and (max-width: 768px){
   
     .btn-div{
@@ -10,3 +13,40 @@
 }
 
 
+
+nav {
+  background-color: #ffffff; 
+  text-align: center; 
+  cursor: pointer;
+}
+
+nav .container {
+  width: 80%; 
+  margin: 0 auto; 
+}
+
+nav ul {
+  list-style-type: none;
+  margin-top: 50px;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 100px; 
+}
+
+nav ul li:last-child {
+  margin-right: 0; 
+}
+
+nav ul li a {
+  display: block;
+  color: #000000; 
+  text-decoration: none;
+  padding: 10px 15px;
+}
+
+nav ul li a:hover {
+  background-color: #f2f2f2; 
+}

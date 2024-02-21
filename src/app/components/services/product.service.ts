@@ -17,6 +17,12 @@ export class ProductService {
     return this._http.get<ProductModel[]>('https://fakestoreapi.com/products');
   }
 
+  getCategories(): Observable<string[]> {
+    return this._http.get<string[]>(
+      'https://fakestoreapi.com/products/categories'
+    );
+  }
+
   getCategoryProducts(
     selectedCategory: StringMapWithRename
   ): Observable<ProductModel[]> {

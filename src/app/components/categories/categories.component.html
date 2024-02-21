@@ -1,11 +1,18 @@
-<p-menubar>
+<!-- <p-menubar>
     <ng-template pTemplate="start">
-        <button style="color: rgb(87, 87, 87);" *ngFor="let category of categoryList" 
+        <button style="color: rgb(87, 87, 87);" *ngFor="let category of categoryList"
         (click)="handleClick(category)" pButton pRipple type="button"
             class="p-button-outlined p-button-secondary">
             {{ (category | category) }}
         </button> </ng-template>
 
-</p-menubar>
+</p-menubar> -->
 
+<nav>
+    <ul>
+        <li *ngFor="let category of categoryList">
+            <a (click)="handleClick(category)">{{ (category | category) }}</a>
+        </li>
+    </ul>
+</nav>
 
