@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3ae8c5a8c2beb20c97d68a218cdf299fa91645f5
 # Product
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.11.
