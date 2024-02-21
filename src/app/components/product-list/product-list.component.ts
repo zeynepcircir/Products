@@ -6,7 +6,7 @@ import { MessageService } from 'primeng/api';
 import { PrimeNGConfig } from 'primeng/api';
 import { HomeEditButtonComponent } from '../home-edit-button/home-edit-button.component';
 import { Observable } from 'rxjs';
-import { ProductService } from 'src/app/services/product.service';
+import { ProductService } from 'src/app/components/services/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -50,7 +50,8 @@ export class ProductListComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {          //lifecycle'da component ilk çalıştırıldığında devreye giren kısımdır
+  ngOnInit(): void {
+    //lifecycle'da component ilk çalıştırıldığında devreye giren kısımdır
     this.primengConfig.ripple = true;
 
     this._productService.getProducts().subscribe((response) => {
@@ -62,28 +63,27 @@ export class ProductListComponent implements OnInit {
         }
       });
     });
-  }  
+  }
 
-    // const observable = new Observable((subscriber) => {   //observable için örnek rxjs
-    //   //rxjs'te kullanılıyor
-    //   subscriber.next(1);
-    //   console.log('subscriber1', subscriber);
+  // const observable = new Observable((subscriber) => {   //observable için örnek rxjs
+  //   //rxjs'te kullanılıyor
+  //   subscriber.next(1);
+  //   console.log('subscriber1', subscriber);
 
-    //   subscriber.next(2);
-    //   console.log('subscriber2', subscriber);
-    //   subscriber.next(3);
-    //   console.log('subscriber3', subscriber);
-    //   setTimeout(() => {
-    //     subscriber.next(4);
-    //     console.log('subscriber4', subscriber);
+  //   subscriber.next(2);
+  //   console.log('subscriber2', subscriber);
+  //   subscriber.next(3);
+  //   console.log('subscriber3', subscriber);
+  //   setTimeout(() => {
+  //     subscriber.next(4);
+  //     console.log('subscriber4', subscriber);
 
-    //     subscriber.complete();
-    //   }, 1000);
+  //     subscriber.complete();
+  //   }, 1000);
   //   });
 
   //   observable.subscribe();
   //   console.log(observable);
- 
 
   getProductsBySelectedCategory(event: ProductModel[]) {
     this.productList = event;
